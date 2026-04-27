@@ -64,13 +64,6 @@ function App() {
     window.open(whatsappUrl, '_blank');
   };
 
-  const handleBackToCards = () => {
-    setShowReplyForm(false);
-    setReplyText('');
-    setIsOpen(false);
-    setCurrentCard(0);
-  };
-
   const playMusic = () => {
     // Kode mentah untuk musik
     if (audioRef.current) {
