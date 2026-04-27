@@ -1,0 +1,1070 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0f1f3f 0%, #1a3a5c 100%);
+  overflow: hidden;
+}
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f1f3f 0%, #162850 50%, #1a3a5c 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==================== ENVELOPE STYLING ==================== */
+
+.envelope-container {
+  text-align: center;
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.instruction-text {
+  color: white;
+  font-size: 22px;
+  margin-top: 40px;
+  animation: pulse 1.5s infinite;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.envelope {
+  position: relative;
+  width: 320px;
+  height: 230px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  perspective: 1000px;
+}
+
+.envelope:hover {
+  transform: scale(1.05);
+}
+
+.envelope.opening {
+  animation: envelopeOpen 0.8s ease-out forwards;
+  perspective: 1000px;
+}
+
+.envelope.opening .envelope-top {
+  animation: envelopeTopOpen 0.8s ease-out forwards;
+}
+
+.envelope.opening .envelope-body {
+  transform-style: preserve-3d;
+}
+
+.envelope.opening .envelope-flap {
+  animation: envelopeFlapOpen 0.8s ease-out forwards;
+}
+
+.envelope.opening .seal {
+  animation: sealFade 0.6s ease-out forwards;
+}
+
+@keyframes envelopeOpen {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes envelopeTopOpen {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(90deg) translateY(-60px);
+    opacity: 0;
+  }
+}
+
+@keyframes envelopeFlapOpen {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(150deg) translateY(-80px);
+    opacity: 0;
+  }
+}
+
+@keyframes sealFade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+.envelope-body {
+  position: absolute;
+  width: 320px;
+  height: 230px;
+  background: linear-gradient(135deg, #1a3a5c 0%, #244570 100%);
+  border: 4px solid #d4af37;
+  border-radius: 10px;
+  top: 0;
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+  transform-style: preserve-3d;
+}
+
+.envelope-top {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-top: 115px solid #0f1f3f;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transform-origin: center top;
+}
+
+.envelope-flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a3a5c 0%, #1f4a70 100%);
+  border: 4px solid #d4af37;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  transform-origin: center top;
+}
+
+/* Seal/Perekat di Tengah */
+.seal {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background: radial-gradient(circle at 30% 30%, #f0c041, #d4af37);
+  border-radius: 50%;
+  top: 87px;
+  left: 132px;
+  z-index: 3;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6), 0 0 40px rgba(240, 192, 65, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.seal:hover {
+  transform: scale(1.15);
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.8), 0 0 50px rgba(240, 192, 65, 0.6);
+}
+
+.seal-inner {
+  width: 44px;
+  height: 44px;
+  background: radial-gradient(circle at 40% 40%, #ffd966, #d4af37);
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+/* ==================== CARD STYLING ==================== */
+
+.card-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: cardFadeIn 1s ease-out 0.4s backwards;
+}
+
+.card-container2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: cardFadeIn 0.6s ease-in;
+}
+
+@keyframes cardFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(80px);
+  }
+  40% {
+    opacity: 0;
+    transform: scale(0.7) translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.card-wrapper {
+  position: relative;
+  width: 85%;
+  max-width: 850px;
+}
+
+.card {
+  background: linear-gradient(135deg, #1a3a5c 0%, #244570 100%);
+  border-radius: 20px;
+  padding: 50px 60px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 60px rgba(212, 175, 55, 0.25);
+  min-height: 450px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 40px;
+  animation: slideUp 0.6s ease-out;
+  border: 3px solid #d4af37;
+  position: relative;
+}
+
+/* Foto Sebelah Kiri */
+.card-image {
+  flex: 0 0 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 3px solid #d4af37;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+/* Ucapan Sebelah Kanan */
+.card-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card-header h2 {
+  color: #f0c041;
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(240, 192, 65, 0.4);
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.card-content p {
+  color: #e0e0e0;
+  font-size: 16px;
+  line-height: 1.9;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* ==================== CAKE & CONFETTI ANIMATIONS ==================== */
+
+.cake-emoji {
+  position: absolute;
+  font-size: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: cakePop 2.5s ease-out 0.5s forwards;
+  z-index: 10;
+}
+
+@keyframes cakePop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.confetti-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.confetti {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+  animation: confettiSpread 2.5s ease-out forwards;
+}
+
+.confetti:nth-child(1) {
+  background: #FF6B6B;
+  animation-delay: 0.4s;
+}
+
+.confetti:nth-child(2) {
+  background: #4ECDC4;
+  animation-delay: 0.45s;
+}
+
+.confetti:nth-child(3) {
+  background: #FFE66D;
+  animation-delay: 0.5s;
+}
+
+.confetti:nth-child(4) {
+  background: #95E1D3;
+  animation-delay: 0.55s;
+}
+
+.confetti:nth-child(5) {
+  background: #F38181;
+  animation-delay: 0.6s;
+}
+
+.confetti:nth-child(6) {
+  background: #AA96DA;
+  animation-delay: 0.45s;
+}
+
+.confetti:nth-child(7) {
+  background: #FCBAD3;
+  animation-delay: 0.5s;
+}
+
+.confetti:nth-child(8) {
+  background: #A8E6CF;
+  animation-delay: 0.55s;
+}
+
+.confetti:nth-child(9) {
+  background: #FFD3B6;
+  animation-delay: 0.6s;
+}
+
+.confetti:nth-child(10) {
+  background: #FF6B9D;
+  animation-delay: 0.4s;
+}
+
+.confetti:nth-child(11) {
+  background: #C7CEEA;
+  animation-delay: 0.45s;
+}
+
+.confetti:nth-child(12) {
+  background: #FFA07A;
+  animation-delay: 0.5s;
+}
+
+.confetti:nth-child(13) {
+  background: #98D8C8;
+  animation-delay: 0.55s;
+}
+
+.confetti:nth-child(14) {
+  background: #F7DC6F;
+  animation-delay: 0.6s;
+}
+
+.confetti:nth-child(15) {
+  background: #BB8FCE;
+  animation-delay: 0.45s;
+}
+
+.confetti:nth-child(16) {
+  background: #85C1E2;
+  animation-delay: 0.5s;
+}
+
+.confetti:nth-child(17) {
+  background: #F8B88B;
+  animation-delay: 0.55s;
+}
+
+.confetti:nth-child(18) {
+  background: #ABEBC6;
+  animation-delay: 0.6s;
+}
+
+.confetti:nth-child(19) {
+  background: #F1948A;
+  animation-delay: 0.4s;
+}
+
+.confetti:nth-child(20) {
+  background: #D2B4DE;
+  animation-delay: 0.45s;
+}
+
+.confetti:nth-child(21) {
+  background: #AED6F1;
+  animation-delay: 0.5s;
+}
+
+.confetti:nth-child(22) {
+  background: #F5B7B1;
+  animation-delay: 0.55s;
+}
+
+.confetti:nth-child(23) {
+  background: #ABEBC6;
+  animation-delay: 0.6s;
+}
+
+.confetti:nth-child(24) {
+  background: #F9E79F;
+  animation-delay: 0.45s;
+}
+
+.confetti:nth-child(25) {
+  background: #D7BDE2;
+  animation-delay: 0.5s;
+}
+
+.confetti:nth-child(26) {
+  background: #A9DFBF;
+  animation-delay: 0.55s;
+}
+
+.confetti:nth-child(27) {
+  background: #FAD7A0;
+  animation-delay: 0.6s;
+}
+
+.confetti:nth-child(28) {
+  background: #D5F4E6;
+  animation-delay: 0.45s;
+}
+
+.confetti:nth-child(29) {
+  background: #FADBD8;
+  animation-delay: 0.5s;
+}
+
+.confetti:nth-child(30) {
+  background: #FCF3CF;
+  animation-delay: 0.55s;
+}
+
+@keyframes confettiSpread {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0.3);
+  }
+}
+
+/* ==================== TOMBOL NEXT ==================== */
+
+.next-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #d4af37, #f0c041);
+  color: #0f1f3f;
+  border: 3px solid #ffd966;
+  padding: 10px 28px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5), 0 0 25px rgba(240, 192, 65, 0.3);
+  transition: all 0.3s ease;
+  animation: buttonPop 0.4s ease-out;
+}
+
+@keyframes buttonPop {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.next-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.7), 0 0 25px rgba(240, 192, 65, 0.5);
+  background: linear-gradient(135deg, #ffd966, #ffeb3b);
+}
+
+.next-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.4);
+}
+
+.next-button.finish {
+  background: linear-gradient(135deg, #1a5e5e, #2a8e8e);
+  border: 2px solid #d4af37;
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4), 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.next-button.finish:hover {
+  background: linear-gradient(135deg, #2a8e8e, #3aaeae);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6), 0 0 25px rgba(212, 175, 55, 0.4);
+}
+
+/* ==================== REPLY FORM STYLING ==================== */
+
+.reply-card {
+  background: linear-gradient(135deg, #1a3a5c 0%, #244570 100%);
+  border-radius: 20px;
+  padding: 50px 60px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 60px rgba(212, 175, 55, 0.25);
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  border: 3px solid #d4af37;
+  position: relative;
+  animation: slideUp 0.6s ease-out;
+  width: 85%;
+  max-width: 600px;
+  margin: auto;
+}
+
+.reply-header {
+  text-align: center;
+  color: white;
+}
+
+.reply-header h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #d4af37;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.reply-header p {
+  font-size: 16px;
+  color: #b0b0b0;
+  font-style: italic;
+}
+
+.reply-form {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+}
+
+.reply-input {
+  width: 100%;
+  padding: 20px;
+  border: 2px solid #d4af37;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0f1f3f 0%, #162850 50%, #1a3a5c 100%);
+  color: #d4af37;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  resize: none;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.reply-input:focus {
+  outline: none;
+  border-color: #f0c041;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 15px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, #162850 0%, #1a3a5c 50%, #0f1f3f 100%);
+}
+
+.reply-input::placeholder {
+  color: #999;
+}
+
+.reply-actions {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
+}
+
+.send-button {
+  background: linear-gradient(135deg, #0f1f3f 0%, #162850 50%, #1a3a5c 100%);
+  color: #d4af37;
+  border: 2px solid #d4af37;
+  padding: 12px 40px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+  transition: all 0.3s ease;
+  animation: buttonPop 0.4s ease-out;
+}
+
+.send-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5), 0 0 15px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, #162850 0%, #1a3a5c 50%, #244570 100%);
+  color: #f0c041;
+}
+
+.send-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);
+}
+
+.back-button {
+  background: linear-gradient(135deg, #555 0%, #777 100%);
+  color: #fff;
+  border: 2px solid #888;
+  padding: 12px 40px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: buttonPop 0.4s ease-out;
+}
+
+.back-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #666 0%, #888 100%);
+}
+
+.back-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+/* MOBILE - Layar Kecil (max 480px) */
+@media (max-width: 480px) {
+  .app-container {
+    overflow-y: auto;
+    padding: 10px 0;
+  }
+
+  .instruction-text {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .envelope {
+    width: 200px;
+    height: 140px;
+  }
+
+  .envelope-top {
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-top: 70px solid #0f1f3f;
+    top: 0;
+  }
+
+  .envelope-body {
+    width: 200px;
+    height: 140px;
+  }
+
+  .envelope-flap {
+    width: 100%;
+    height: 100%;
+  }
+
+  .seal {
+    width: 35px;
+    height: 35px;
+    top: 52px;
+    left: 82px;
+    font-size: 16px;
+  }
+
+  .seal-inner {
+    width: 26px;
+    height: 26px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+
+  /* Card Styling untuk Mobile */
+  .card-wrapper {
+    width: 95%;
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .card {
+    padding: 20px;
+    min-height: auto;
+    flex-direction: column;
+    gap: 15px;
+    border: 2px solid #d4af37;
+  }
+
+  .card-image {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 200px;
+  }
+
+  .photo {
+    height: 100%;
+  }
+
+  .card-text {
+    gap: 15px;
+  }
+
+  .card-header h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .card-header {
+    margin-bottom: 10px;
+  }
+
+  .card-content {
+    margin-bottom: 10px;
+  }
+
+  .card-content p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .next-button {
+    position: static;
+    padding: 10px 25px;
+    font-size: 13px;
+    margin-top: 15px;
+    width: auto;
+    bottom: auto;
+    right: auto;
+  }
+
+  /* Reply Card untuk Mobile */
+  .reply-card {
+    width: 95%;
+    max-width: 100%;
+    padding: 20px;
+    min-height: auto;
+    gap: 20px;
+    border: 2px solid #d4af37;
+    margin: 10px auto;
+  }
+
+  .reply-header h2 {
+    font-size: 22px;
+  }
+
+  .reply-header p {
+    font-size: 13px;
+  }
+
+  .reply-input {
+    min-height: 120px;
+    font-size: 14px;
+  }
+
+  .reply-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .send-button,
+  .back-button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+}
+
+/* TABLET - Layar Sedang (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+  .instruction-text {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  .envelope {
+    width: 270px;
+    height: 190px;
+  }
+
+  .envelope-top {
+    border-left: 135px solid transparent;
+    border-right: 135px solid transparent;
+    border-top: 95px solid #0f1f3f;
+  }
+
+  .envelope-body {
+    width: 270px;
+    height: 190px;
+  }
+
+  .seal {
+    width: 42px;
+    height: 42px;
+    top: 72px;
+    left: 114px;
+  }
+
+  .seal-inner {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Card Styling untuk Tablet */
+  .card-wrapper {
+    width: 90%;
+    max-width: 700px;
+  }
+
+  .card {
+    padding: 30px 35px;
+    min-height: 380px;
+    flex-direction: column;
+    gap: 25px;
+    border: 2px solid #d4af37;
+  }
+
+  .card-image {
+    flex: 0 0 220px;
+    width: 100%;
+    height: 220px;
+  }
+
+  .card-header h2 {
+    font-size: 26px;
+  }
+
+  .card-content p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .next-button {
+    position: absolute;
+    padding: 10px 25px;
+    font-size: 13px;
+  }
+
+  /* Reply Card untuk Tablet */
+  .reply-card {
+    width: 90%;
+    max-width: 600px;
+    padding: 35px 40px;
+    gap: 25px;
+    border: 2px solid #d4af37;
+  }
+
+  .reply-header h2 {
+    font-size: 28px;
+  }
+
+  .reply-input {
+    min-height: 150px;
+    font-size: 14px;
+  }
+
+  .reply-actions {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .send-button,
+  .back-button {
+    flex: 1;
+    padding: 12px 30px;
+    font-size: 14px;
+  }
+}
+
+/* LAPTOP / DESKTOP - Layar Besar (min 769px) */
+@media (min-width: 769px) {
+  .instruction-text {
+    font-size: 22px;
+    margin-top: 40px;
+  }
+
+  .envelope {
+    width: 320px;
+    height: 230px;
+  }
+
+  .envelope-top {
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 115px solid #0f1f3f;
+  }
+
+  .envelope-body {
+    width: 320px;
+    height: 230px;
+  }
+
+  .seal {
+    width: 55px;
+    height: 55px;
+    top: 87px;
+    left: 132px;
+  }
+
+  .seal-inner {
+    width: 44px;
+    height: 44px;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+  }
+
+  /* Card Styling untuk Desktop */
+  .card-wrapper {
+    width: 85%;
+    max-width: 850px;
+  }
+
+  .card {
+    padding: 50px 60px;
+    min-height: 450px;
+    flex-direction: row;
+    gap: 40px;
+    border: 3px solid #d4af37;
+  }
+
+  .card-image {
+    flex: 0 0 300px;
+  }
+
+  .card-header h2 {
+    font-size: 32px;
+  }
+
+  .card-content p {
+    font-size: 16px;
+  }
+
+  .next-button {
+    padding: 10px 28px;
+    font-size: 14px;
+  }
+
+  /* Reply Card untuk Desktop */
+  .reply-card {
+    width: 85%;
+    max-width: 600px;
+    padding: 50px 60px;
+    gap: 30px;
+    border: 3px solid #d4af37;
+  }
+
+  .reply-header h2 {
+    font-size: 32px;
+  }
+
+  .reply-input {
+    min-height: 200px;
+    font-size: 15px;
+  }
+
+  .send-button,
+  .back-button {
+    padding: 12px 40px;
+    font-size: 15px;
+  }
+}
+
